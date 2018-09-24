@@ -5,8 +5,6 @@ class PropertiesController < ApplicationController
 
   def new
     @property = Property.new
-    @regions = Region.all
-    @property_types = PropertyType.all
   end
 
   def create
@@ -16,8 +14,6 @@ class PropertiesController < ApplicationController
       redirect_to @property
     else
       flash[:alert] = 'Você deve preencher todos os campos'
-      @regions = Region.all
-      @property_types = PropertyType.all
       render :new
     end
   end

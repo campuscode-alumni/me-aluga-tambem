@@ -5,3 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+Region.create!(name: 'Floripa')
+Region.create!(name: 'Leblon')
+PropertyType.create!(name: 'Casa de Praia')
+PropertyType.create!(name: 'Apartamento')
+

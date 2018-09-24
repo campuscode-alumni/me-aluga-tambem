@@ -6,34 +6,27 @@
   <% end %>
 </ul>
 
-<%= form_for @property do |f| %>
+<%= simple_form_for @property do |f| %>
   <div class="form-group">
-    <%= f.label :title, 'Título' %>
-    <%= f.text_field :title, class: 'form-control' %>
+    <%= f.input :title, label: 'Título' %>
   </div>
   <div class="form-group">
-    <%= f.label :description, 'Descrição' %>
-    <%= f.text_field :description, class: 'form-control' %>
+    <%= f.input :description, label: 'Descrição' %>
   </div>
   <div class="form-group">
-    <%= f.label :property_type_id, 'Tipo do imóvel' %>
-    <%= f.collection_select(:property_type_id, @property_types, :id, :name, {}, { class: 'form-control' }) %>
+    <%= f.association :property_type, label: 'Tipo do imóvel' %>
   </div>
   <div class="form-group">
-    <%= f.label :region_id, 'Região' %>
-    <%= f.collection_select(:region_id, @regions, :id, :name, {}, { class: 'form-control' }) %>
+    <%= f.association :region, label: 'Região' %>
   </div>
   <div class="form-group">
-    <%= f.label :rent_purpose, 'Finalidade do imóvel' %>
-    <%= f.text_field :rent_purpose, class: 'form-control' %>
+    <%= f.input :rent_purpose, label: 'Finalidade do imóvel' %>
   </div>
   <div class="form-group">
-    <%= f.label :area, 'Área' %>
-    <%= f.number_field :area, class: 'form-control' %>
+    <%= f.input :area, label: 'Área' %>
   </div>
   <div class="form-group">
-    <%= f.label :room_quantity, 'Quantidade de cômodos' %>
-    <%= f.number_field :room_quantity, class: 'form-control' %>
+    <%= f.input :room_quantity, label: 'Quantidade de cômodos' %>
   </div>
   <div class="form-check">
     <%= f.check_box :accessibility, class: 'form-check-input' %>
@@ -48,20 +41,16 @@
     <%= f.label :allow_smokers, 'Aceita fumantes', class: 'form-check-label' %>
   </div>
   <div class="form-group">
-    <%= f.label :maximum_guests, 'Ocupação máxima' %>
-    <%= f.number_field :maximum_guests, class: 'form-control' %>
+    <%= f.input :maximum_guests, label: 'Ocupação máxima' %>
   </div>
   <div class="form-group">
-    <%= f.label :minimum_rent, 'Mínimo de diárias' %>
-    <%= f.number_field :minimum_rent, class: 'form-control' %>
+    <%= f.input :minimum_rent, label: 'Mínimo de diárias' %>
   </div>
   <div class="form-group">
-    <%= f.label :maximum_rent, 'Máximo de diárias' %>
-    <%= f.number_field :maximum_rent, class: 'form-control' %>
+    <%= f.input :maximum_rent, label: 'Máximo de diárias' %>
   </div>
   <div class="form-group">
-    <%= f.label :daily_rate, 'Valor da diária' %>
-    <%= f.number_field :daily_rate, step: 0.01, class: 'form-control' %>
+    <%= f.input :daily_rate, label: 'Valor da diária' %>
   </div>
   <div class="form-group">
     <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
