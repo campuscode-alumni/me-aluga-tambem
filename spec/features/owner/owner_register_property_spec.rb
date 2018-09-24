@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-feature 'Register Property' do
+feature 'Owner register Property' do
   scenario 'successfully' do
     region = Region.create(name: 'Copacabana')
     property_type = PropertyType.create(name: 'Apartamento')

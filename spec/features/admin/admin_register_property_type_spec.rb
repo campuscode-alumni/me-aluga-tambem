@@ -1,19 +1,19 @@
 require 'rails_helper'
 
-feature 'Register Region' do
+feature 'Admin register Property Type' do
   scenario 'successfully' do
     visit root_path
-    click_on 'Cadastrar região'
-    fill_in 'Nome', with: 'Copacabana'
+    click_on 'Cadastrar tipo de imóvel'
+    fill_in 'Nome', with: 'Apartamento'
     click_on 'Cadastrar'
 
-    expect(page).to have_css('p', text: 'Região cadastrada com sucesso')
-    expect(page).to have_css('h1', text: 'Copacabana')
+    expect(page).to have_css('p', text: 'Tipo do imóvel cadastrado com sucesso')
+    expect(page).to have_css('h1', text: 'Apartamento')
   end
 
   scenario 'and leave blank fields' do
     visit root_path
-    click_on 'Cadastrar região'
+    click_on 'Cadastrar tipo de imóvel'
     click_on 'Cadastrar'
 
     expect(page).to have_content('Você deve preencher todos os campos')

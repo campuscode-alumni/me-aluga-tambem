@@ -7,7 +7,9 @@
 </ul>
 
 <%= form_for @property_type do |f| %>
-  <%= f.label :name, 'Nome' %>
-  <%= f.text_field :name %>
-  <%= f.submit 'Cadastrar' %>
+  <div class="form-group">
+    <%= f.label :name, 'Nome' %>
+    <%= f.text_field :name, class: 'form-control' %>
+  </div>
+  <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
 <% end %>
