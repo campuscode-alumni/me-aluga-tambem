@@ -2,6 +2,11 @@
 <p><%= @property.description %></p>
 <h3>Descrição do imóvel</h3>
 <ul>
+  <%if (@property.photo.attached?)%>
+    <%= image_tag @property.photo.variant(resize: "450x")  %>
+  <%else%>
+    <%= image_tag 'image-missing.png' %>
+  <%end%>
   <li>Região: <%= @property.region.name %></li>
   <li>Tipo do imóvel: <%= @property.property_type.name %></li>
   <li>Finalidade do imóvel: <%= @property.rent_purpose %></li>
