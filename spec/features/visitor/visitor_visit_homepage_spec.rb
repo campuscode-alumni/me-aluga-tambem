@@ -62,4 +62,62 @@ feature 'visitor visit homepage' do
       expect(page).to have_css('li', text: property.daily_rate)
 
   end
+
+  scenario 'visitor view property by region' do
+
+    property_type = PropertyType.create!(name: 'casa')
+    region_florianopolis = Region.create!(name: 'Florianópolis')
+    property_fl = Property.create!(title: 'Casa de banho', 
+                              description: 'Lugar maravilho para tomar banho',
+                              property_type: property_type,
+                              region: region_florianopolis,
+                              area: 60,  
+                              room_quantity: 2,
+                              accessibility: true, 
+                              allow_pets: false,
+                              allow_smokers: true, 
+                              maximum_guests: 5, 
+                              minimum_rent: 2,
+                              maximum_rent: 10,
+                              daily_rate: 199.99) 
+
+    property_type = PropertyType.create!(name: 'apartamento')
+    region_buzios = Region.create!(name: 'Búzios')
+    property_bz = Property.create!(title: 'Apartamento Lindão', 
+                              description: 'Lugar maravilho',
+                              property_type: property_type,
+                              region: region_buzios,
+                              area: 60,  
+                              room_quantity: 2,
+                              accessibility: true, 
+                              allow_pets: false,
+                              allow_smokers: true, 
+                              maximum_guests: 5, 
+                              minimum_rent: 2,
+                              maximum_rent: 10,
+                              daily_rate: 199.99) 
+                            
+    
+
+    visit root_path
+
+    expect(page).to have_css('h2', text: 'Propriedades de Florianópolis')
+    within("div#region-#{region_florianopolis.id}") do
+      expect(page).to have_css('li', text: property_fl.title)
+      expect(page).to have_css('li', text: property_fl.description)
+      expect(page).to have_css('li', text: property_fl.property_type.name)
+      expect(page).to have_css('li', text: property_fl.room_quantity)
+      expect(page).to have_css('li', text: property_fl.daily_rate)
+    end
+
+    expect(page).to have_css('h2', text: 'Propriedades de Búzios')
+    within("div#region-#{region_buzios.id}") do
+      expect(page).to have_css('li', text: property_bz.title)
+      expect(page).to have_css('li', text: property_bz.description)
+      expect(page).to have_css('li', text: property_bz.property_type.name)
+      expect(page).to have_css('li', text: property_bz.room_quantity)
+      expect(page).to have_css('li', text: property_bz.daily_rate)
+    end
+  end
+
 end
