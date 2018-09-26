@@ -2,7 +2,6 @@ require 'rails_helper'
 
 feature 'visitor visit homepage' do
   scenario 'successfully' do
-    
     property_type = PropertyType.create(name: 'casa')
     region = Region.create(name: 'Florianópolis')
     property = Property.create(title: 'Casa de banho', 
@@ -15,7 +14,6 @@ feature 'visitor visit homepage' do
                               maximum_rent: 10,
                               daily_rate: 199.99)
 
-
     visit root_path
 
     expect(page).to have_css('li', text: property.title)
@@ -23,7 +21,6 @@ feature 'visitor visit homepage' do
     expect(page).to have_css('li', text: property.property_type.name)
     expect(page).to have_css('li', text: property.room_quantity)
     expect(page).to have_css('li', text: property.daily_rate)
-
   end
 
   scenario 'view property details' do 
@@ -108,6 +105,7 @@ feature 'visitor visit homepage' do
       expect(page).to have_css('li', text: property_fl.property_type.name)
       expect(page).to have_css('li', text: property_fl.room_quantity)
       expect(page).to have_css('li', text: property_fl.daily_rate)
+      expect(page).not_to have_css('li', text: property_bz.title)
     end
 
     expect(page).to have_css('h2', text: 'Propriedades de Búzios')
@@ -117,6 +115,7 @@ feature 'visitor visit homepage' do
       expect(page).to have_css('li', text: property_bz.property_type.name)
       expect(page).to have_css('li', text: property_bz.room_quantity)
       expect(page).to have_css('li', text: property_bz.daily_rate)
+      expect(page).not_to have_css('li', text: property_fl.title)
     end
   end
 
