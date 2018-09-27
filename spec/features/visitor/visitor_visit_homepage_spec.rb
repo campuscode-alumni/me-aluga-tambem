@@ -64,7 +64,7 @@ feature 'visitor visit homepage' do
 
     property_type = PropertyType.create!(name: 'casa')
     region_florianopolis = Region.create!(name: 'Florianópolis')
-    property_fl = Property.create!(title: 'Casa de banho', 
+    property_fl = Property.new(title: 'Casa de banho', 
                               description: 'Lugar maravilho para tomar banho',
                               property_type: property_type,
                               region: region_florianopolis,
@@ -77,10 +77,12 @@ feature 'visitor visit homepage' do
                               minimum_rent: 2,
                               maximum_rent: 10,
                               daily_rate: 199.99) 
+    property_fl.photo.attach(io: File.open('./spec/support/apartamento.jpg'), filename: 'apartamento.jpg')
+    property_fl.save!
 
     property_type = PropertyType.create!(name: 'apartamento')
     region_buzios = Region.create!(name: 'Búzios')
-    property_bz = Property.create!(title: 'Apartamento Lindão', 
+    property_bz = Property.new(title: 'Apartamento Lindão', 
                               description: 'Lugar maravilho',
                               property_type: property_type,
                               region: region_buzios,
@@ -93,6 +95,8 @@ feature 'visitor visit homepage' do
                               minimum_rent: 2,
                               maximum_rent: 10,
                               daily_rate: 199.99) 
+    property_bz.photo.attach(io: File.open('./spec/support/apartamento.jpg'), filename: 'apartamento.jpg')
+    property_bz.save!
                             
     
 
@@ -105,6 +109,7 @@ feature 'visitor visit homepage' do
       expect(page).to have_css('li', text: property_fl.property_type.name)
       expect(page).to have_css('li', text: property_fl.room_quantity)
       expect(page).to have_css('li', text: property_fl.daily_rate)
+      expect(page).to have_css("img[src*='apartamento']")
       expect(page).not_to have_css('li', text: property_bz.title)
     end
 
@@ -115,6 +120,7 @@ feature 'visitor visit homepage' do
       expect(page).to have_css('li', text: property_bz.property_type.name)
       expect(page).to have_css('li', text: property_bz.room_quantity)
       expect(page).to have_css('li', text: property_bz.daily_rate)
+      expect(page).to have_css("img[src*='apartamento']")
       expect(page).not_to have_css('li', text: property_fl.title)
     end
   end

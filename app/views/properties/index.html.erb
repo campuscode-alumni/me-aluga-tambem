@@ -9,6 +9,11 @@ Bem-vindo ao aluga temporada!
     <div id="region-<%= region.id %>">
         <% region.properties.each do |property| %>
             <ul>
+                <%if (property.photo.attached?)%>
+                    <%= image_tag property.photo.variant(resize: "450x")  %>
+                <%else%>
+                    <%= image_tag 'image-missing.png' %>
+                <%end%>
                 <li><%= link_to property.title, property %></li>
                 <li><%= property.description %></li>
                 <li><%= property.property_type.name %></li>
