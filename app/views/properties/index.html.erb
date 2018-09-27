@@ -1,3 +1,27 @@
 Bem-vindo ao aluga temporada!
 
 <%= link_to 'Cadastrar Imóvel', new_property_path %>
+
+<% @regions.each do |region| %>
+
+    <h2> Propriedades de <%= region.name %></h2>
+
+    <div id="region-<%= region.id %>">
+        <% region.properties.each do |property| %>
+            <ul>
+                <%if (property.photo.attached?)%>
+                    <%= image_tag property.photo.variant(resize: "450x")  %>
+                <%else%>
+                    <%= image_tag 'image-missing.png' %>
+                <%end%>
+                <li><%= link_to property.title, property %></li>
+                <li><%= property.description %></li>
+                <li><%= property.property_type.name %></li>
+                <li><%= property.room_quantity %></li>
+                <li><%= property.daily_rate %></li>
+            </ul>
+        <% end %>
+    </div>
+
+<% end %>
+

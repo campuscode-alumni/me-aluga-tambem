@@ -1,7 +1,15 @@
 class PropertiesController < ApplicationController
   before_action :set_property, only: [:show]
 
-  def show; end
+  def index
+    @regions = Region.all
+
+
+  end
+
+  def show
+    @property = Property.find(params[:id])
+  end
 
   def new
     @property = Property.new
