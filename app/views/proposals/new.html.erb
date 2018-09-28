@@ -1,0 +1,11 @@
+<%= simple_form_for @proposals do |f| %>
+  <div class="form-group">
+    <%= f.input :start_date, label: 'Data de entrada' %>
+    <%= f.input :end_date, label: 'Data de saída' %>
+    <%= f.input :rent_proposal, label: 'Motivo' %>
+    <%= f.input :total_guests, label: 'Quantidade de hóspedes' %>
+
+  </div>
+
+  <%= f.submit 'Cadastrar', class: 'btn btn-primary' %>
+<% end %>
