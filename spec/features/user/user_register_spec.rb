@@ -21,5 +21,22 @@ require 'rails_helper'
 
       expect(page).to have_content('You have signed up successfully')
     end
+
+    scenario 'field in blank' do
+      visit root_path
+
+      click_on 'Cadastrar usuario'
+      fill_in 'Nome', with: 'José'
+      fill_in 'Email', with: 'jose@email.com'
+      fill_in 'Senha', with: '123456'
+      fill_in 'Confirmação de senha', with: '123456'
+      fill_in 'Documento', with: ''
+      fill_in 'Telefone', with: ''
+      click_on 'Cadastrar'
+
+      expect(page).to have_content("Document can't be blank")
+      expect(page).not_to have_content('José')
+
+    end
   
   end
