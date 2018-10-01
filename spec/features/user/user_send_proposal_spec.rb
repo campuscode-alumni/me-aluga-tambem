@@ -27,7 +27,7 @@ feature 'User send a proposal' do
     click_on('Lindo Apartamento')
     click_on('Enviar proposta')
     
-    fill_in 'Data de entrada ', with: '15/12/2018'
+    fill_in 'Data de entrada', with: '15/12/2018'
     fill_in 'Data de saída', with: '15/01/2019'
     fill_in 'Motivo', with: 'Férias de fim de ano com a família'
     fill_in 'Quantidade de hóspedes', with: '8'

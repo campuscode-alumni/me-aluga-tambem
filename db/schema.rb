@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_28_010323) do
+ActiveRecord::Schema.define(version: 2018_10_01_232747) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -67,6 +67,8 @@ ActiveRecord::Schema.define(version: 2018_09_28_010323) do
     t.integer "total_guests"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "property_id"
+    t.index ["property_id"], name: "index_proposals_on_property_id"
   end
 
   create_table "regions", force: :cascade do |t|
