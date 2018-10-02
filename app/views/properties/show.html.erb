@@ -1,4 +1,4 @@
-<h1><%= @property.title %></h1>
+<h1><%=  @property.title %></h1>
 <p><%= @property.description %></p>
 <h3>Descrição do imóvel</h3>
 <ul>
@@ -19,4 +19,7 @@
   <li>Mínimo de diárias: <%= @property.minimum_rent %></li>
   <li>Máximo de diárias: <%= @property.maximum_rent %></li>
   <li>Valor da diária: R$ <%= @property.daily_rate %></li>
+
+  <%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
+
 </ul>

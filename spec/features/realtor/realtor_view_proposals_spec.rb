@@ -2,12 +2,12 @@ require 'rails_helper'
 
 feature 'Realtor view proposals' do
   scenario 'successfully' do              
-    realtor = Realtor.create(email: 'Joaquim@teste.com',
+    realtor = Realtor.create!(email: 'Joaquim@teste.com',
                              password: '1234567')
 
-    property_type = PropertyType.create(name: 'casa')
-    region = Region.create(name: 'Florianópolis')
-    property = Property.create(title: 'Casa de banho', 
+    property_type = PropertyType.create!(name: 'casa')
+    region = Region.create!(name: 'Florianópolis')
+    property = Property.create!(title: 'Casa de banho', 
                               description: 'Lugar maravilho para tomar banho',
                               maximum_guests: 5,
                               property_type: property_type,
@@ -18,13 +18,13 @@ feature 'Realtor view proposals' do
                               daily_rate: 199.99,
                               realtor: realtor)
                               
-    user = User.create(name: 'Joao',
+    user = User.create!(name: 'Joao',
     email: 'joao@mailme.com',
     password: '1233556',
     document: '12345678901',
     phone: '33038003')
 
-    proposal = Proposal.create(start_date: '20/12/2018',
+    proposal = Proposal.create!(start_date: '20/12/2018',
                                end_date: '15/01/2019',
                                total_guests: 5,
                                rent_proposal: 'ferias',

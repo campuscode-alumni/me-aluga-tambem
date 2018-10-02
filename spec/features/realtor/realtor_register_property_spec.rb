@@ -69,6 +69,15 @@ feature 'Realtor register Property' do
   end
 
   scenario 'and dont upload photo' do 
+    realtor = Realtor.create(email: 'Joaquim@teste.com',
+    password: '1234567')
+    
+    visit root_path
+    click_on 'Login Corretor'
+    fill_in 'Email', with: 'Joaquim@teste.com'
+    fill_in 'Senha', with: '1234567'
+    click_on 'Entrar'
+
     region = Region.create(name: 'Copacabana')
     property_type = PropertyType.create(name: 'Apartamento')
 
