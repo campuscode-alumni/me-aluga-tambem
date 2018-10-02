@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'User send a proposal' do
   scenario 'successfully' do
+
+    user = User.create!(name: 'jose', email: 'jose@jose.com', password: '123456', phone: '12345678', document: '123')
     region = Region.create!(name: 'Copacabana')
     property_type = PropertyType.create!(name: 'Apartamento')
 
@@ -22,7 +24,15 @@ feature 'User send a proposal' do
                                daily_rate: 600.00
                                )
 
+
     visit root_path
+    click_on 'Entrar'
+
+    fill_in 'Email', with: 'jose@jose.com'
+    fill_in 'Senha', with: '123456'
+    within 'form' do
+      click_on 'Entrar'
+    end
 
     click_on('Lindo Apartamento')
     click_on('Enviar proposta')

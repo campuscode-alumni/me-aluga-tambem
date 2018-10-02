@@ -8,6 +8,7 @@ class ProposalsController   < ApplicationController
   def create
     @proposal = Proposal.new(proposal_params)
     @proposal.property = Property.find(params[:property_id])
+    @proposal.user = current_user
     if @proposal.save
       flash[:success] = 'Proposta enviada com sucesso'
       redirect_to [@proposal.property, @proposal]
