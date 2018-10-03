@@ -1,3 +1,7 @@
 <% if(flash[:success])%>
 <%= flash[:success] %>
+<% elsif(flash[:alert])%>
+<%= flash[:alert] %>
 <%end%>
+
+<p>Valor total de <%= @proposal.total_amount %></p>

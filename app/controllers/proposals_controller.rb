@@ -6,14 +6,17 @@ class ProposalsController   < ApplicationController
   end 
 
   def create
-    @proposal = Proposal.new(proposal_params)
-    @proposal.property = Property.find(params[:property_id])
+    @property = Property.find(params[:property_id])
+    @proposal = @property.proposals.new(proposal_params)
     @proposal.user = current_user
+    @proposal.set_total_amount
+
     if @proposal.save
       flash[:success] = 'Proposta enviada com sucesso'
       redirect_to [@proposal.property, @proposal]
     else
       flash[:alert] = 'Preencha todos os campos'
+      render :new
     end
   end
 
