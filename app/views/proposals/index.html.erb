@@ -1,0 +1,10 @@
+
+<% @proposals.each do |proposal| %>
+    <ul>
+        <li> <%= proposal.start_date %></li>
+        <li> <%= proposal.end_date %></li>
+        <li> <%= proposal.rent_proposal %></li>
+        <li> <%= proposal.user.name %></li>
+    </ul>
+<% end %>
+

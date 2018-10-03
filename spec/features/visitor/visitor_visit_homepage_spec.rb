@@ -2,6 +2,10 @@ require 'rails_helper'
 
 feature 'visitor visit homepage' do
   scenario 'successfully' do
+
+    realtor = Realtor.create(email: 'Joaquim@teste.com',
+    password: '1234567')
+
     property_type = PropertyType.create(name: 'casa')
     region = Region.create(name: 'Florianópolis')
     property = Property.create(title: 'Casa de banho', 
@@ -12,7 +16,8 @@ feature 'visitor visit homepage' do
                               room_quantity: 2,
                               minimum_rent: 2,
                               maximum_rent: 10,
-                              daily_rate: 199.99)
+                              daily_rate: 199.99,
+                              realtor: realtor)
 
     visit root_path
 
@@ -24,7 +29,9 @@ feature 'visitor visit homepage' do
   end
 
   scenario 'view property details' do 
-      
+    realtor = Realtor.create(email: 'Joaquim@teste.com',
+    password: '1234567')
+
     property_type = PropertyType.create!(name: 'casa')
     region = Region.create!(name: 'Florianópolis')
     property = Property.create!(title: 'Casa de banho', 
@@ -39,7 +46,8 @@ feature 'visitor visit homepage' do
                               maximum_guests: 5, 
                               minimum_rent: 2,
                               maximum_rent: 10,
-                              daily_rate: 199.99) 
+                              daily_rate: 199.99, 
+                              realtor: realtor) 
                              
      visit root_path
      click_on 'Casa de banho'
@@ -61,6 +69,9 @@ feature 'visitor visit homepage' do
   end
 
   scenario 'visitor view property by region' do
+    
+    realtor = Realtor.create(email: 'Joaquim@teste.com',
+    password: '1234567')
 
     property_type = PropertyType.create!(name: 'casa')
     region_florianopolis = Region.create!(name: 'Florianópolis')
@@ -76,7 +87,9 @@ feature 'visitor visit homepage' do
                               maximum_guests: 5, 
                               minimum_rent: 2,
                               maximum_rent: 10,
-                              daily_rate: 199.99) 
+                              daily_rate: 199.99, 
+                              realtor: realtor)
+
     property_fl.photo.attach(io: File.open('./spec/support/apartamento.jpg'), filename: 'apartamento.jpg')
     property_fl.save!
 
@@ -94,7 +107,9 @@ feature 'visitor visit homepage' do
                               maximum_guests: 5, 
                               minimum_rent: 2,
                               maximum_rent: 10,
-                              daily_rate: 199.99) 
+                              daily_rate: 199.99, 
+                              realtor: realtor) 
+                              
     property_bz.photo.attach(io: File.open('./spec/support/apartamento.jpg'), filename: 'apartamento.jpg')
     property_bz.save!
                             

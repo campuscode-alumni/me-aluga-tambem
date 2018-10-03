@@ -24,6 +24,10 @@ class ProposalsController   < ApplicationController
     @proposal = Proposal.find(params[:id])
   end
 
+  def index
+    
+    @proposals = Proposal.where(property: current_realtor.properties)
+  end
 
   def proposal_params
     params.require(:proposal).permit(:start_date, :end_date, :rent_proposal, :total_guests )

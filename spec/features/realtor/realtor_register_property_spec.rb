@@ -2,10 +2,19 @@ require 'rails_helper'
 
 feature 'Realtor register Property' do
   scenario 'successfully' do
+
+    realtor = Realtor.create(email: 'Joaquim@teste.com',
+    password: '1234567')
+    
+    visit root_path
+    click_on 'Login Corretor'
+    fill_in 'Email', with: 'Joaquim@teste.com'
+    fill_in 'Senha', with: '1234567'
+    click_on 'Entrar'
+
     region = Region.create(name: 'Copacabana')
     property_type = PropertyType.create(name: 'Apartamento')
 
-    visit root_path
     click_on 'Cadastrar imóvel'
     fill_in 'Título', with: 'Lindo apartamento 100m da praia'
     fill_in 'Descrição', with: 'Um apartamento excelente para férias'
@@ -60,6 +69,15 @@ feature 'Realtor register Property' do
   end
 
   scenario 'and dont upload photo' do 
+    realtor = Realtor.create(email: 'Joaquim@teste.com',
+    password: '1234567')
+    
+    visit root_path
+    click_on 'Login Corretor'
+    fill_in 'Email', with: 'Joaquim@teste.com'
+    fill_in 'Senha', with: '1234567'
+    click_on 'Entrar'
+
     region = Region.create(name: 'Copacabana')
     property_type = PropertyType.create(name: 'Apartamento')
 

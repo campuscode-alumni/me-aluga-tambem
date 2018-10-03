@@ -6,7 +6,8 @@ feature 'User send a proposal' do
     user = User.create!(name: 'jose', email: 'jose@jose.com', password: '123456', phone: '12345678', document: '123')
     region = Region.create!(name: 'Copacabana')
     property_type = PropertyType.create!(name: 'Apartamento')
-
+    realtor = Realtor.create(email: 'Joaquim@teste.com',
+                            password: '1234567')
     property = Property.create!(title: 'Lindo Apartamento',
                                description: 'Lindo apartamento em Copacabana de frente para o mar',
                                property_type: property_type,
@@ -21,11 +22,11 @@ feature 'User send a proposal' do
                                minimum_rent: 1,
                                maximum_rent: 10,
                                maximum_guests: 364,
-                               daily_rate: 600.00
-                               )
+                               daily_rate: 600.00,
+                               realtor: realtor)
 
     visit root_path
-    click_on 'Entrar'
+    click_on 'Logar'
 
     fill_in 'Email', with: 'jose@jose.com'
     fill_in 'Senha', with: '123456'
