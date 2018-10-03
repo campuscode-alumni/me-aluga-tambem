@@ -9,7 +9,7 @@ class ProposalsController   < ApplicationController
     @proposal = Proposal.new(proposal_params)
     @proposal.property = Property.find(params[:property_id])
     @proposal.user = current_user
-    if @proposal.save!
+    if @proposal.save
       flash[:success] = 'Proposta enviada com sucesso'
       redirect_to [@proposal.property, @proposal]
     else
@@ -21,6 +21,10 @@ class ProposalsController   < ApplicationController
     @proposal = Proposal.find(params[:id])
   end
 
+  def index
+    
+    @proposals = Proposal.where(property: current_realtor.properties)
+  end
 
   def proposal_params
     params.require(:proposal).permit(:start_date, :end_date, :rent_proposal, :total_guests )

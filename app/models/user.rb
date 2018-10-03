@@ -4,7 +4,7 @@ class User < ApplicationRecord
   has_many :proposals
 
   validates :name, :document, :phone, presence: true
-    
+  has_many :proposals  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 end

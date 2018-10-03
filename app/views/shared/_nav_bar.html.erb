@@ -24,5 +24,13 @@
       <li class="nav-item">
         <a class="nav-link" href="<%= new_realtor_session_path %>">Login Corretor</a>
       </li>
+      <% if user_signed_in?%>
+          <%= current_user.name%>
+          <%= link_to 'Sair', destroy_user_session_path, method: :delete  %>
+      <%else%> 
+        <li class="nav-item">
+          <a class="nav-link" href="<%= new_user_session_path %>">Logar</a>
+        </li>
+      <%end%>
   </div>
 </nav>
