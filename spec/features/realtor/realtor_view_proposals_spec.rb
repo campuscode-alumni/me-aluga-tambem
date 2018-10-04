@@ -44,8 +44,8 @@ feature 'Realtor view proposals' do
     click_on 'Entrar'
     click_on 'Ver Propostas'
     
-    expect(page).to have_css('li', text: proposal.start_date)
-    expect(page).to have_css('li', text: proposal.end_date)
+    expect(page).to have_css('li', text: proposal.start_date.strftime('%d/%m/%Y'))
+    expect(page).to have_css('li', text: proposal.end_date.strftime('%d/%m/%Y'))
     expect(page).to have_css('li', text: proposal.total_guests)
     expect(page).to have_css('li', text: proposal.rent_proposal)
     expect(page).to have_css('li', text: proposal.user.name)
