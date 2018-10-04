@@ -1,8 +1,8 @@
 Bem-vindo ao aluga temporada!
 
-
-<%= link_to 'Ver Propostas', proposals_path %>
-
+<% if (realtor_signed_in?)%>
+  <%= link_to 'Ver Propostas', proposals_path %>
+<%end%>
 <% @regions.each do |region| %>
 
     <h2> Propriedades de <%= region.name %></h2>

@@ -52,6 +52,16 @@ feature 'Realtor register Property' do
   end
 
   scenario 'and leave blank fields' do
+
+    realtor = Realtor.create(email: 'Joaquim@teste.com',
+    password: '1234567')
+    
+    visit root_path
+    click_on 'Login Corretor'
+    fill_in 'Email', with: 'Joaquim@teste.com'
+    fill_in 'Senha', with: '1234567'
+    click_on 'Entrar'
+
     Region.create(name: 'Copacabana')
     PropertyType.create(name: 'Apartamento')
 

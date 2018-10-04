@@ -19,7 +19,7 @@
   <li>Mínimo de diárias: <%= @property.minimum_rent %></li>
   <li>Máximo de diárias: <%= @property.maximum_rent %></li>
   <li>Valor da diária: R$ <%= @property.daily_rate %></li>
-
+<% if (user_signed_in?)%>
   <%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
-
+<%end%>
 </ul>

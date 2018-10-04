@@ -9,15 +9,17 @@
       <li class="nav-item active">
         <a class="nav-link" href="<%= root_path %>">Home <span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= new_property_path %>">Cadastrar imóvel</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= new_property_type_path %>">Cadastrar tipo de imóvel</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="<%= new_region_path %>">Cadastrar região</a>
-      </li>
+      <% if (realtor_signed_in?)%>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= new_property_path %>">Cadastrar imóvel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= new_property_type_path %>">Cadastrar tipo de imóvel</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="<%= new_region_path %>">Cadastrar região</a>
+        </li>
+      <%end%>
       <li class="nav-item">
         <a class="nav-link" href="<%= new_user_registration_path %>">Cadastrar usuario</a>
       </li>
