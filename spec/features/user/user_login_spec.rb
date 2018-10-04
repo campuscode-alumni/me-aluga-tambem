@@ -6,8 +6,9 @@ feature 'user login' do
 
     user = User.create!(name: 'jose', email: 'jose@jose.com', password: '123456', phone: '12345678', document: '123')
     visit root_path
-    click_on 'Logar'
+    click_on 'Logar como Usuário'
 
+    expect(page).to have_content('h2', 'Área do Usuário')
     fill_in 'Email', with: 'jose@jose.com'
     fill_in 'Senha', with: '123456'
     within 'form' do
@@ -21,7 +22,7 @@ feature 'user login' do
 
     user = User.create!(name: 'jose', email: 'jose@jose.com', password: '123456', phone: '12345678', document: '123')
     visit root_path
-    click_on 'Logar'
+    click_on 'Logar como Usuário'
 
     fill_in 'Email', with: ''
     fill_in 'Senha', with: ''
