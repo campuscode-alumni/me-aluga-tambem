@@ -7,7 +7,9 @@ Rails.application.routes.draw do
     resources :proposals, only: [:show, :new, :create]
   end
 
-  resources :proposals, only: [:index]
+  resources :proposals, only: [:index] do
+    post "approve", on: :member
+  end
   
   resources :property_types, only: [:show, :new, :create]
   resources :regions, only: [:show, :new, :create]

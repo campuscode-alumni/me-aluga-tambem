@@ -1,7 +1,16 @@
-<% if(flash[:success])%>
-<%= flash[:success] %>
-<% elsif(flash[:alert])%>
-<%= flash[:alert] %>
+<h1>Dados da Proposta</h1>
+<h2><%= @proposal.property.title%></h2>
+<li>Status: <%= @proposal.status %></li>
+<li>Data de entrada: <%= @proposal.start_date.strftime('%d/%m/%Y') %></li>
+<li>Data de saída: <%= @proposal.end_date.strftime('%d/%m/%Y') %></li>
+<li>Total pessoas: <%= @proposal.total_guests%></li>
+<li>Motivo: <%= @proposal.rent_proposal%></li>
+<li>Valor total: <%= @proposal.total_amount%></li>
+<h1>Dados do Cliente</h1>
+<li>Nome: <%= @proposal.user.name%></li>
+<li>Email: <%= @proposal.user.email%></li>
+<li>Fone: <%= @proposal.user.phone%></li>
+<% if (realtor_signed_in?)%>
+  <%= link_to 'Aceitar', approve_proposal_path(@proposal), method: :post, class: 'btn btn-success' %>
+  <%= link_to 'Recusar', root_path, class: 'btn btn-danger' %>
 <%end%>
-
-<p>Valor total de <%= @proposal.total_amount %></p>

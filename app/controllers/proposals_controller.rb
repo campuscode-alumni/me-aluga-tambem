@@ -29,6 +29,12 @@ class ProposalsController   < ApplicationController
     @proposals = Proposal.where(property: current_realtor.properties)
   end
 
+  def approve
+    @proposal = Proposal.find(params[:id])
+    @proposal.approved!
+    redirect_to [@proposal.property, @proposal]
+  end
+
   def proposal_params
     params.require(:proposal).permit(:start_date, :end_date, :rent_proposal, :total_guests )
   end  

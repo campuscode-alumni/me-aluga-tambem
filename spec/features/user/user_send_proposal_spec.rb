@@ -45,7 +45,7 @@ feature 'User send a proposal' do
     click_on('Efetuar Proposta')
 
     expect(page).to have_content('Proposta enviada com sucesso')
-    expect(page).to have_content('Valor total de 6000.0')
+    expect(page).to have_content('Valor total: 6000.0')
   end
 
   scenario 'and blank fields' do

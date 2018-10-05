@@ -1,6 +1,6 @@
 
 <% @proposals.each do |proposal| %>
-    <h1>Imovel: <%= proposal.property.title%></h1>
+    <h1>Imovel: <%= link_to proposal.property.title, property_proposal_path(proposal.property, proposal)%></h1>
     <ul> 
         <li>Data de Entrada: <%= proposal.start_date.strftime('%d/%m/%Y') %></li>
         <li>Data de Saída: <%= proposal.end_date.strftime('%d/%m/%Y') %></li>
@@ -8,7 +8,6 @@
         <li>Locatário: <%= proposal.user.name %></li>
         <li>Valor Total: <%= proposal.total_amount %></li>
     </ul>
-    <%= link_to 'Aceitar', root_path, class: 'btn btn-success' %>
-    <%= link_to 'Recusar', root_path, class: 'btn btn-danger' %>
+
 <% end %>
 
