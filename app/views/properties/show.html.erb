@@ -22,4 +22,5 @@
 <% if (user_signed_in?)%>
   <%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
 <%end%>
+<li><%= link_to 'Cadastrar Preço por temporada' , new_property_price_range_path(@property) %></li>
 </ul>

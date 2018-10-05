@@ -12,7 +12,7 @@
   <body>
     <%= render partial: 'shared/nav_bar' %>
     <div class="container">
-      <p><%= flash[:success] %></p>
+      <p class="success"><%= flash[:success] %></p>
       <p><%= flash[:notice] %></p>
       <p><%= flash[:alert] %></p>
       <%= yield %>
