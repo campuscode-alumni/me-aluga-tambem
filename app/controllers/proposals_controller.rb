@@ -8,14 +8,13 @@ class ProposalsController   < ApplicationController
   def create
     @property = Property.find(params[:property_id])
     @proposal = @property.proposals.new(proposal_params)
+    @proposal_exist = @property.proposals.where(user: current_user ).exists?
+    if @proposal_exist
+      flash[:alert] = 'Proposta já cadastrada'
+      return render :new
+    end  
     @proposal.user = current_user
     @proposal.set_total_amount
-    #Person.where(name: 'Spartacus', rating: 4).exists?
-    @proposal_exist = @property.proposals.where(proposal.user: current_user).exists?
-    if @proposal_exist
-    redirect_to root_path
-    end  
-
     if @proposal.save
       flash[:success] = 'Proposta enviada com sucesso'
       redirect_to [@proposal.property, @proposal]
@@ -27,6 +26,7 @@ class ProposalsController   < ApplicationController
 
   def show
     @proposal = Proposal.find(params[:id])
+
   end
 
   def index
