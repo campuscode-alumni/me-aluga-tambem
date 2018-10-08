@@ -10,6 +10,11 @@ class ProposalsController   < ApplicationController
     @proposal = @property.proposals.new(proposal_params)
     @proposal.user = current_user
     @proposal.set_total_amount
+    #Person.where(name: 'Spartacus', rating: 4).exists?
+    @proposal_exist = @property.proposals.where(proposal.user: current_user).exists?
+    if @proposal_exist
+    redirect_to root_path
+    end  
 
     if @proposal.save
       flash[:success] = 'Proposta enviada com sucesso'
