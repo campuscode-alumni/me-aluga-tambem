@@ -118,7 +118,7 @@ feature 'User send a proposal' do
                                )
 
     visit root_path
-    click_on 'Logar'
+    click_on 'Logar como Usuário'
 
     fill_in 'Email', with: 'jose@jose.com'
     fill_in 'Senha', with: '123456'
