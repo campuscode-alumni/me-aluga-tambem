@@ -23,15 +23,21 @@
       <li class="nav-item">
         <a class="nav-link" href="<%= new_user_registration_path %>">Cadastrar usuario</a>
       </li>
+
+      <% if realtor_signed_in? %>
+         <%= current_realtor.email%>
+         <%= link_to 'Sair', destroy_realtor_session_path, method: :delete  %>
+      <% else %>
       <li class="nav-item">
-        <a class="nav-link" href="<%= new_realtor_session_path %>">Login Corretor</a>
+        <a class="nav-link" href="<%= new_realtor_session_path %>">Logar como Corretor</a>
       </li>
+      <% end %>
       <% if user_signed_in?%>
           <%= current_user.name%>
           <%= link_to 'Sair', destroy_user_session_path, method: :delete  %>
       <%else%> 
         <li class="nav-item">
-          <a class="nav-link" href="<%= new_user_session_path %>">Logar</a>
+          <a class="nav-link" href="<%= new_user_session_path %>">Logar como Usuário</a>
         </li>
       <%end%>
   </div>

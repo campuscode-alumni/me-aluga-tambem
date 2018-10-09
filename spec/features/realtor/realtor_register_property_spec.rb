@@ -7,7 +7,7 @@ feature 'Realtor register Property' do
     password: '1234567')
     
     visit root_path
-    click_on 'Login Corretor'
+    click_on 'Logar como Corretor'
     fill_in 'Email', with: 'Joaquim@teste.com'
     fill_in 'Senha', with: '1234567'
     click_on 'Entrar'
@@ -57,7 +57,7 @@ feature 'Realtor register Property' do
     password: '1234567')
     
     visit root_path
-    click_on 'Login Corretor'
+    click_on 'Logar como Corretor'
     fill_in 'Email', with: 'Joaquim@teste.com'
     fill_in 'Senha', with: '1234567'
     click_on 'Entrar'
@@ -83,7 +83,7 @@ feature 'Realtor register Property' do
     password: '1234567')
     
     visit root_path
-    click_on 'Login Corretor'
+    click_on 'Logar como Corretor'
     fill_in 'Email', with: 'Joaquim@teste.com'
     fill_in 'Senha', with: '1234567'
     click_on 'Entrar'
