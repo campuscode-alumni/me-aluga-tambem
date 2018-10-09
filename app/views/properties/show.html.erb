@@ -19,8 +19,22 @@
   <li>Mínimo de diárias: <%= @property.minimum_rent %></li>
   <li>Máximo de diárias: <%= @property.maximum_rent %></li>
   <li>Valor da diária: R$ <%= @property.daily_rate %></li>
+  
+  <h3>Preços por Temporada</h3>
+  <div id="price_range">
+    <% @property.price_ranges.each do|price| %>
+      <ul>
+        <li>Temporada: <%= price.description %></li>
+        <li>Data Inicial: <%= price.start_date %></li>
+        <li>Data Final: <%= price.end_date %></li>
+        <li>Preço: <%= price.daily_rate %></li>
+      </ul>
+    <% end %> 
+  </div>
+
 <% if (user_signed_in?)%>
   <%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
 <%end%>
 <li><%= link_to 'Cadastrar Preço por temporada' , new_property_price_range_path(@property) %></li>
+
 </ul>

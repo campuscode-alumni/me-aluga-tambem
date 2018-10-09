@@ -20,7 +20,7 @@ feature 'realtor_register_price_ranger' do
                                minimum_rent: 1,
                                maximum_rent: 10,
                                maximum_guests: 364,
-                               daily_rate: 300.00,
+                               daily_rate: 300,
                                realtor: realtor)
     
     visit root_path
@@ -34,15 +34,15 @@ feature 'realtor_register_price_ranger' do
     end
    
     click_on 'Lindo Apartamento'
-    click_on 'Cadastrar Preço por temporada'
+    click_on 'Cadastrar Preço por temporada' 
     fill_in 'Temporada', with: 'Carnaval'
-    fill_in 'Preço/Temporada', with: '650'
-    fill_in 'Início da Temporada', with: '01/02/2019'
-    fill_in 'Término da Temporada', with: '20/02/2019'
+    fill_in 'Preço da Temporada', with: '650'
+    fill_in 'Início da Temporada', with: '2019-02-01'
+    fill_in 'Término da Temporada', with: '2019-02-20'
     click_on 'Inserir preço'
 
-    expect(page).to have_css('success', text: 'Preço inserido com sucesso!')
-    expect(page).to have_css('h1', text: 'Lindo apartamento')
+    expect(page).to have_content('Preço inserido com sucesso!')
+    expect(page).to have_css('h1', text: 'Lindo Apartamento')
     expect(page).to have_css('p', text: 'Lindo apartamento em Copacabana de frente para o mar')
     expect(page).to have_css('li', text: region.name)
     expect(page).to have_css('li', text: property_type.name)
@@ -52,16 +52,16 @@ feature 'realtor_register_price_ranger' do
     expect(page).to have_css('li', text: 'Possui acessibilidade: Sim')
     expect(page).to have_css('li', text: 'Aceita animais: Sim')
     expect(page).to have_css('li', text: 'Aceita fumantes: Não')
-    expect(page).to have_css('li', text: '16')
+    expect(page).to have_css('li', text: '364')
     expect(page).to have_css('li', text: '1')
     expect(page).to have_css('li', text: '10')
-    expect(page).to have_css('li', text: 'Preço: 500')
+    expect(page).to have_css('li', text: 'Valor da diária: R$ 300')
     expect(page).to have_css('h3', text: 'Preços por Temporada')
-    within('div.price_range') do
+    within('div#price_range') do
       expect(page).to have_content('Carnaval')
-      expect(page).to have_content('01/02/2019')
-      expect(page).to have_content('20/02/2019')
-      expect(page).to have_content('R$ 650,00')
+      expect(page).to have_content('2019-02-01')
+      expect(page).to have_content('2019-02-20')
+      expect(page).to have_content('650')
     end
     
   end

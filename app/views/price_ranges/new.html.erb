@@ -1,0 +1,14 @@
+<h1>Cadastrar Preçpo por temporada </h1>
+
+<%= form_for([@property, @price]) do |f| %>
+    <%= f.label :description , "Temporada" %>
+    <%= f.text_field :description %>
+    <%= f.label :daily_rate, "Preço da Temporada" %>
+    <%= f.text_field :daily_rate %>
+    <%= f.label :start_date, "Início da Temporada" %>
+    <%= f.date_field :start_date %>
+    <%= f.label :end_date, "Término da Temporada" %>
+    <%= f.date_field :end_date %>
+    <%= f.button "Inserir preço" %>
+
+<% end %>

@@ -4,6 +4,7 @@ class Property < ApplicationRecord
   belongs_to :realtor
 
   has_many :proposals
+  has_many :price_ranges
   has_one_attached :photo
 
   validates :title, :room_quantity, :maximum_guests, :minimum_rent,
