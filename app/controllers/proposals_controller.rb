@@ -1,4 +1,5 @@
 class ProposalsController   < ApplicationController
+  before_action :require_login
 
   def new
     @proposal = Proposal.new
@@ -39,4 +40,12 @@ class ProposalsController   < ApplicationController
   def proposal_params
     params.require(:proposal).permit(:start_date, :end_date, :rent_proposal, :total_guests )
   end  
+  private
+   
+    def require_login
+      unless user_signed_in? || realtor_signed_in?
+        flash[:alert] = "Você precisa estar logado para ver esta página"
+        redirect_to root_path
+      end
+    end
 end    

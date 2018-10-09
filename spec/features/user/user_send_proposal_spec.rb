@@ -138,4 +138,33 @@ feature 'User send a proposal' do
     expect(page).to have_content('deve ser maior que a data de entrada')
   end
 
+  scenario 'and not logged' do
+    user = User.create!(name: 'jose', email: 'jose@jose.com', password: '123456', phone: '12345678', document: '123')
+    region = Region.create!(name: 'Copacabana')
+    property_type = PropertyType.create!(name: 'Apartamento')
+    realtor = Realtor.create(email: 'Joaquim@teste.com',
+                            password: '1234567')
+
+    property = Property.create!(title: 'Lindo Apartamento',
+                               description: 'Lindo apartamento em Copacabana de frente para o mar',
+                               property_type: property_type,
+                               region: region,
+                               rent_purpose: 'Aluguel para temporadas',
+                               area: 120,
+                               room_quantity: 4,
+                               accessibility: true,
+                               allow_pets: true,
+                               allow_smokers: false,
+                               maximum_guests: 16,
+                               minimum_rent: 1,
+                               maximum_rent: 10,
+                               maximum_guests: 364,
+                               daily_rate: 600.00,
+                               realtor: realtor
+                               )
+
+    visit new_property_proposal_path(property)
+    expect(current_path).to eq root_path
+  end
+
 end
