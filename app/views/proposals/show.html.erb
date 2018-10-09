@@ -10,7 +10,7 @@
 <li>Nome: <%= @proposal.user.name%></li>
 <li>Email: <%= @proposal.user.email%></li>
 <li>Fone: <%= @proposal.user.phone%></li>
-<% if (realtor_signed_in?)%>
+<% if (realtor_signed_in? && !@proposal.approved? )%>
   <%= link_to 'Aceitar', approve_proposal_path(@proposal), method: :post, class: 'btn btn-success' %>
   <%= link_to 'Recusar', root_path, class: 'btn btn-danger' %>
 <%end%>

@@ -25,13 +25,14 @@ class ProposalsController   < ApplicationController
   end
 
   def index
-    
     @proposals = Proposal.where(property: current_realtor.properties)
   end
 
   def approve
     @proposal = Proposal.find(params[:id])
+    @proposal.status_changed_at = Time.now
     @proposal.approved!
+    
     redirect_to [@proposal.property, @proposal]
   end
 
