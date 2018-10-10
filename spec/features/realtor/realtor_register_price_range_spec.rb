@@ -63,6 +63,5 @@ feature 'realtor_register_price_ranger' do
       expect(page).to have_content('2019-02-20')
       expect(page).to have_content('650')
     end
-    
   end
 end
