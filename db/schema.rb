@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_10_08_224342) do
+ActiveRecord::Schema.define(version: 2018_10_10_000007) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -94,6 +94,16 @@ ActiveRecord::Schema.define(version: 2018_10_08_224342) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "unavailable_ranges", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "property_id"
+    t.index ["property_id"], name: "index_unavailable_ranges_on_property_id"
   end
 
   create_table "users", force: :cascade do |t|

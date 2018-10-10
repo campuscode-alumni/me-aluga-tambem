@@ -139,6 +139,7 @@ feature 'User send a proposal' do
   end
 
   scenario 'and not logged' do
+
     user = User.create!(name: 'jose', email: 'jose@jose.com', password: '123456', phone: '12345678', document: '123')
     region = Region.create!(name: 'Copacabana')
     property_type = PropertyType.create!(name: 'Apartamento')
@@ -165,6 +166,57 @@ feature 'User send a proposal' do
 
     visit new_property_proposal_path(property)
     expect(current_path).to eq root_path
+  end
+
+  scenario 'and period between unavailable range' do
+    
+    user = User.create!(name: 'jose', email: 'jose@jose.com', password: '123456', phone: '12345678', document: '123')
+    realtor = Realtor.create(email: 'Joaquim@teste.com', password: '1234567')
+    property_type = PropertyType.create!(name: 'casa')
+    region = Region.create!(name: 'Florianópolis')
+    property = Property.create!(title: 'Lindo Apartamento',
+                               description: 'Lindo apartamento em Copacabana de frente para o mar',
+                               property_type: property_type,
+                               region: region,
+                               rent_purpose: 'Aluguel para temporadas',
+                               area: 120,
+                               room_quantity: 4,
+                               accessibility: true,
+                               allow_pets: true,
+                               allow_smokers: false,
+                               maximum_guests: 16,
+                               minimum_rent: 1,
+                               maximum_rent: 10,
+                               maximum_guests: 364,
+                               daily_rate: 600.00,
+                               realtor: realtor)
+                               
+    unavailable_range = UnavailableRange.create!(start_date: '10/05/2018', 
+                                                end_date: '20/05/2018', 
+                                                description: 'Reforma', 
+                                                property: property)
+    visit root_path
+    click_on 'Logar como Usuário'
+
+    fill_in 'Email', with: 'jose@jose.com'
+    fill_in 'Senha', with: '123456'
+    within 'form' do
+      click_on 'Entrar'
+    end
+    
+    click_on 'Lindo Apartamento'
+    click_on 'Enviar proposta'
+
+    fill_in 'Data de entrada', with: '12/05/2018'
+    fill_in 'Data de saída', with: '15/05/2018'
+    fill_in 'Motivo', with: 'Férias com a família'
+    fill_in 'Quantidade de hóspedes', with: '8'
+    click_on('Efetuar Proposta')
+
+    expect(page).to have_content('Não é possível enviar uma proposta para este período')
+
+                                                
+
   end
 
 end

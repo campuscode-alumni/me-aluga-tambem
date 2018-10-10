@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   resources :properties, only: [:show, :new, :create] do
     resources :proposals, only: [:show, :new, :create]
+    resources :unavailable_ranges, only: [:new, :create]
   end
 
   resources :proposals, only: [:index] do

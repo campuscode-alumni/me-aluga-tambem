@@ -18,8 +18,25 @@
   <li>Ocupação máxima: <%= @property.maximum_guests %></li>
   <li>Mínimo de diárias: <%= @property.minimum_rent %></li>
   <li>Máximo de diárias: <%= @property.maximum_rent %></li>
+  <li>Data(s) com Restrição
+      <% if !@property.unavailable_ranges %>
+        <li>Nenhuma data com restrição encontrada</li>
+      <% else %>
+        <% @property.unavailable_ranges.each do |range| %>
+          <ul>
+            <li>Data Inicial: <%= range.start_date.strftime('%d/%m/%Y') %></li>
+            <li>Data Final: <%= range.end_date.strftime('%d/%m/%Y') %></li>
+            <li>Descrição: <%= range.description %></li>
+          </ul>
+        <% end %>
+      <% end %>
+  </li>
   <li>Valor da diária: R$ <%= @property.daily_rate %></li>
-<% if (user_signed_in?)%>
-  <%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
-<%end%>
+
+  <% if user_signed_in? %>
+    <%= link_to 'Enviar proposta', new_property_proposal_path(@property) %>
+  <% end %>
+  <% if realtor_signed_in? %>
+    <%= link_to 'Adicionar restrição de Datas', new_property_unavailable_range_path(@property), class: 'btn btn-success' %>
+  <% end %>
 </ul>

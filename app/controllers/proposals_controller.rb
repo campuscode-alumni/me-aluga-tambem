@@ -39,13 +39,25 @@ class ProposalsController   < ApplicationController
 
   def proposal_params
     params.require(:proposal).permit(:start_date, :end_date, :rent_proposal, :total_guests )
-  end  
+  end
+
   private
+
+  def range_available?
+    unavailable_periods = []
+    desired_period = []
+
+    RailsDateRange((self.start_date)..(self.end_date)).every(days: 1)
+    self.property.unavailable_ranges
+
+    # proposal.start_date .. proposal.end_date
+    # proposal.unavailable_ranges start_dates .. end_dates..
+  end
    
-    def require_login
-      unless user_signed_in? || realtor_signed_in?
-        flash[:alert] = "Você precisa estar logado para ver esta página"
-        redirect_to root_path
-      end
+  def require_login
+    unless user_signed_in? || realtor_signed_in?
+      flash[:alert] = "Você precisa estar logado para ver esta página"
+      redirect_to root_path
     end
+  end
 end    
